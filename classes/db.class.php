@@ -2,7 +2,7 @@
 class Db{
         private $servername='localhost';
         private $username='root';
-        private $password='12345';
+        private $password='';
         private $dbName='loginsys';
 
     protected function Conn(){
@@ -10,16 +10,13 @@ class Db{
         
         
         try{
-            $dsn='mysql:host='.$this->servername.';dbname='.$this->dbName;
-            $conn=new PDO($dsn,$this->username,$this->password);
-        
-            $conn->setAttribute(PDO::ATTR_ERRORMODE,PDO::ERRORMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+            $conn=new mysqli($this->servername,$this->username,$this->password,$this->dbName);
             return $conn;
         
         }
-        catch(PDOException $e)
+        catch(Exception $e)
         {
-            echo 'Connection failed'. $e->getMessage();
+            die("Error; could not be connect.".$conn->connect_error." " . $e.getMessage());
         }
         
     }

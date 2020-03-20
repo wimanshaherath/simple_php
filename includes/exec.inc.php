@@ -7,16 +7,16 @@
     $pass=$_POST['password'];
     $email=$_POST['email'];
 
-    $sql="insert into account values('$user','$pass','$email')";
+    
 
     try{
-        $insertQ=new inserts($sql);
+        $insertQ=new inserts($user,$pass,$email);
         $insertQ->insertQry();
 
     }
     catch(TypeError $ex)
     {
-        echo 'ee';
+        echo 'ee' . $ex.getMessage();
     }
     
 ?>
